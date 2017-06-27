@@ -1,0 +1,23 @@
+Our last week's assignment:
+- 2 player
+- has all the basic requirements
+- do not have major faults (except Keyboard Interruption)
+- board size is 3x3
+
+Planned improvements:
+
+On code:
+- cleaning existing code
+- handle Keyboard Interruption
+
+Visible features:
+- one display update instead of printing all the stages
+
+Nice to have:
+On code: 
+- modifying the searching method (win conditions)
+
+Visible features:
+- enlarging game board
+
+
