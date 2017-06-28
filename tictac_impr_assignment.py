@@ -70,26 +70,25 @@ def check_won(board, player, actualplayer):
     return won
 
 
-def main():
-
-    board = init_board()
-    player = ["X", "O"]
-    actualplayer = 0
-    step = 0
-    won = False
-    print_board(board)
-
-    while step < 9 and not won:
-        take_step(actualplayer, player, board)
+def tic_tac_toe():
+    try:
+        board = init_board()
+        player = ["X", "O"]
+        actualplayer = 0
+        step = 0
+        won = False
         print_board(board)
-        won = check_won(board, player, actualplayer)
-        actualplayer = switch_player(actualplayer)
-        step = step + 1
-    if not won:
-        print("Even!")
+
+        while step < 9 and not won:
+            take_step(actualplayer, player, board)
+            print_board(board)
+            won = check_won(board, player, actualplayer)
+            actualplayer = switch_player(actualplayer)
+            step = step + 1
+        if not won:
+            print("Even!")
+    except KeyboardInterrupt:
+        print("  ⊂ (◉ ‿ ◉ )つ Goodbye  ")
 
 
-try:
-    main()
-except KeyboardInterrupt:
-    print("Goodbye")
+tic_tac_toe()
