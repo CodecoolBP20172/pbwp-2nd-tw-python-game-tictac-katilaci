@@ -1,23 +1,27 @@
+import os
+
 def init_board():
     board = []
     for row in range(3):
         board.append([])
         for column in range(3):
             board[row].append(str(7 - row * 3 + column))
-            #oszloponként, fentről lefele írja ki
     return board
 
 
 def print_board(board):
+    os.system('clear')
     print("\n")
     for row in board:
         print(" ".join(row))
-
+    return board
 
 
 def take_step(actualplayer, player, board):
-    valid = False
-    while not valid:
+
+
+    valid_step = False
+    while not valid_step:
         try:
             step = int(input("Player " + str(actualplayer + 1) + " (" + player[actualplayer] + ") take a step: "))
         except ValueError:
@@ -29,8 +33,10 @@ def take_step(actualplayer, player, board):
             if board[row][column] == player[0] or board[row][column] == player[1]:
                 print("Location already taken!")
             else:
+                os.system('clear')
                 board[row][column] = player[actualplayer]
-                valid = True
+                valid_step = True
+
         else:
             print("Pick a number between 1 and 9!")
 
@@ -75,7 +81,6 @@ def main():
         step = step + 1
     if not won:
         print("Even!")
-
 
 
 try:
