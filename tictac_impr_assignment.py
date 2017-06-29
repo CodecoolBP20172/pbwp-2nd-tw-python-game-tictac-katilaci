@@ -18,25 +18,25 @@ def print_board(board):
     return board
 
 
-def take_step(actualplayer, player, board):
+def take_step(actualplayer, PLAYER, board):
 
     valid_step = False
     while not valid_step:
         try:
             step = int(input("Player " + str(actualplayer + 1) +
-                             " (" + player[actualplayer] + ") take a step: "))
+                             " (" + PLAYER[actualplayer] + ") take a step: "))
         except ValueError:
             print("Pick a number between 1 and 9!")
             continue
         if step in range(1, 10):
             column = (step - 1) % 3
             row = int((7 - (step - column)) / 3)
-            if board[row][column] == player[0] or \
-                    board[row][column] == player[1]:
+            if board[row][column] == PLAYER[0] or \
+                    board[row][column] == PLAYER[1]:
                     print("Location already taken!")
             else:
                 os.system('clear')
-                board[row][column] = player[actualplayer]
+                board[row][column] = PLAYER[actualplayer]
                 valid_step = True
 
         else:
@@ -50,9 +50,9 @@ def switch_player(actualplayer):
         return 0
 
 
-def check_won(board, player, actualplayer):
+def check_won(board, PLAYER, actualplayer):
     won = False
-    sign = player[actualplayer]
+    sign = PLAYER[actualplayer]
     for i in range(3):
         column_won = board[0][i] == sign and \
             board[1][i] == sign and board[2][i] == sign
@@ -66,29 +66,29 @@ def check_won(board, player, actualplayer):
     won = won or diagonal1_won or diagonal2_won
     if won:
         print("Player " + str(actualplayer + 1) +
-              " (" + player[actualplayer] + ") won!")
+              " (" + PLAYER[actualplayer] + ") won!")
     return won
 
 
 def tic_tac_toe():
     try:
         board = init_board()
-        player = ["X", "O"]
         actualplayer = 0
         step = 0
         won = False
         print_board(board)
 
         while step < 9 and not won:
-            take_step(actualplayer, player, board)
+            take_step(actualplayer, PLAYER, board)
             print_board(board)
-            won = check_won(board, player, actualplayer)
+            won = check_won(board, PLAYER, actualplayer)
             actualplayer = switch_player(actualplayer)
             step = step + 1
         if not won:
-            print("Even!")
+            print("Tie!")
     except KeyboardInterrupt:
-        print("  ⊂ (◉ ‿ ◉ )つ Goodbye  ")
+        print(" ¯\_(⊙ ︿⊙ )_/¯ Goodbye  ")
 
+PLAYER = ["X", "O"]
 
 tic_tac_toe()
